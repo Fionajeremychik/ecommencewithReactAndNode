@@ -9,5 +9,6 @@ const router = express.Router();
 //router.route('/path').get(function)
 router.get("/users", users);  // users function is coming from controllers
 router.post("/register", register);
+router.post("/login", login);
 
 export default router;
