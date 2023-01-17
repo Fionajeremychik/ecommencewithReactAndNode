@@ -1,7 +1,9 @@
 import express from "express";
 
-//controllers
-import { users, register } from "../controllers/auth.js";
+// controllers
+import { users, register, login } from "../controllers/auth.js";
+// middlewares - call custom middlewares
+import { requireSignin, isAdmin } from "../middlewares/auth.js";
 
 const router = express.Router();
 
@@ -10,5 +12,10 @@ const router = express.Router();
 router.get("/users", users);  // users function is coming from controllers
 router.post("/register", register);
 router.post("/login", login);
+
+// testing with token - add requireSignin as middleware
+router.get("/secret", requireSignin, (req, res) => {
+    res.json({message: "You have access to this secret route"});
+});
 
 export default router;
