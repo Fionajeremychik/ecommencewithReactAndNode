@@ -5,7 +5,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.js";
-import router from "./routes/auth.js";
+import morgan from "morgan";
 
 dotenv.config();
 const app = express();
@@ -16,6 +16,11 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log("DB ERROR => ", err));
+
+// middlewares
+// app.use(cors());
+app.use(morgan("dev"));
+// app.use(express.json());
 
 // localhost:8080/users
 // app.route('/path').get(function)
@@ -32,6 +37,7 @@ app.use((req, res, next) => {
 })
 
 // router middleware
+// localhost:8080/api/users
 app.use("/api", authRoutes);
 
 const port = process.env.PORT || 8080;  // Get env variable from .env
