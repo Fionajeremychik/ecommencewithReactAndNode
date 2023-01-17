@@ -20,7 +20,7 @@ mongoose
 // middlewares
 // app.use(cors());
 app.use(morgan("dev"));
-// app.use(express.json());
+app.use(express.json());  // post json request to node
 
 // localhost:8080/users
 // app.route('/path').get(function)
