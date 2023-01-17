@@ -25,6 +25,12 @@ app.get("/users", (req, res) => {  // Use an arrow => instead of function() in E
     });
 }); 
 
+// https://expressjs.com/en/guide/writing-middleware.html
+app.use((req, res, next) => {
+    console.log("THIS is my own middleware");
+    next();   // must have next() to do call back function, otherwise hang up
+})
+
 // router middleware
 app.use("/api", authRoutes);
 
