@@ -15,7 +15,7 @@ router.post("/login", login);
 
 // testing with token - add requireSignin as middleware
 router.get("/secret", requireSignin, (req, res) => {
-    res.json({message: "You have access to this secret route"});
+    res.json({ currentUser: req.user });
 });
 
 export default router;
