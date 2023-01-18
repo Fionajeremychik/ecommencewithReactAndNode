@@ -1,4 +1,5 @@
 import Category from "../models/category.js";
+import slugify from "slugify";
 
 export const create = async (req, res) => {
     try {
@@ -10,7 +11,7 @@ export const create = async (req, res) => {
       if (existingCategory) {
         return res.json({ error: "Already exists" });
       }
-  
+      // slugify e.g React js, react-js
       const category = await new Category({ name, slug: slugify(name) }).save();
       res.json(category);
     } catch (err) {
