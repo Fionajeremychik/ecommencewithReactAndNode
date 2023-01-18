@@ -1,7 +1,7 @@
 import express from "express";
 
-// controllers
-import { users, register, login } from "../controllers/auth.js";
+// controllers: uses, register, login, secret are the functions inside the controller
+import { users, register, login, secret } from "../controllers/auth.js";
 // middlewares - call custom middlewares
 import { requireSignin, isAdmin } from "../middlewares/auth.js";
 
@@ -14,8 +14,6 @@ router.post("/register", register);
 router.post("/login", login);
 
 // testing with token - add requireSignin as middleware
-router.get("/secret", requireSignin, (req, res) => {
-    res.json({ currentUser: req.user });
-});
+router.get("/secret", requireSignin, secret);
 
 export default router;
