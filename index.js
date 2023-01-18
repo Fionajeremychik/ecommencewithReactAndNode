@@ -4,8 +4,9 @@ import express from "express";
 // const express = require("express");
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import authRoutes from "./routes/auth.js";
 import morgan from "morgan";
+import authRoutes from "./routes/auth.js";
+import categoryRoutes from "./routes/category.js";
 
 dotenv.config();
 const app = express();
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 // router middleware
 // localhost:8080/api/users
 app.use("/api", authRoutes);
+app.use("/api", categoryRoutes);
 
 const port = process.env.PORT || 8080;  // Get env variable from .env
 
