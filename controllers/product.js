@@ -70,3 +70,17 @@ export const read = async (req, res) => {
       console.log(err);
     }
   };
+
+  export const photo = async (req, res) => {
+    try {
+      const product = await Product.findById(req.params.productId).select(
+        "photo"
+      );
+      if (product.photo.data) {
+        res.set("Content-Type", product.photo.contentType);
+        return res.send(product.photo.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
