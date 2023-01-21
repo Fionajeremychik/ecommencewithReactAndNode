@@ -9,7 +9,7 @@ import authRoutes from "./routes/auth.js";
 import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import swaggerUi from "swagger-ui-express"; 
-import swaggerJsdoc from "swagger-jsdoc"; 
+import specs from "./routes/swagger.js";
 
 dotenv.config();
 const app = express();
@@ -22,7 +22,7 @@ mongoose
   .catch((err) => console.log("DB ERROR => ", err));
 
 // swagger - openAPI
-const options = {
+/* const options = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
@@ -37,7 +37,7 @@ const options = {
     apis: ['./routes/*.js'],
 };
 
-const specs = swaggerJsdoc(options);
+const specs = swaggerJsdoc(options); */
 
 // middlewares
 // app.use(cors());
