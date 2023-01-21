@@ -10,9 +10,9 @@ import {
     create,
     list,
     read,
-    photo
-    //remove,
-    //update
+    photo,
+    remove,
+    update
     // filteredProducts,
     // productsCount,
     // listProducts,
@@ -29,9 +29,9 @@ import {
   router.get("/product/:slug", read);
   // send id to get product's photo
   router.get("/product/photo/:productId", photo);
-  /* router.delete("/product/:productId", requireSignin, isAdmin, remove);
+  router.delete("/product/:productId", requireSignin, isAdmin, remove);
   router.put("/product/:productId", requireSignin, isAdmin, formidable(), update);
-  router.post("/filtered-products", filteredProducts);
+  /* router.post("/filtered-products", filteredProducts);
   router.get("/products-count", productsCount);
   router.get("/list-products/:page", listProducts);
   router.get("/products/search/:keyword", productsSearch);

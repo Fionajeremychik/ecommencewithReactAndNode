@@ -8,6 +8,8 @@ import morgan from "morgan";
 import authRoutes from "./routes/auth.js";
 import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
+import swaggerUi from "swagger-ui-express"; 
+import swaggerJsdoc from "swagger-jsdoc"; 
 
 dotenv.config();
 const app = express();
@@ -19,10 +21,29 @@ mongoose
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log("DB ERROR => ", err));
 
+// swagger - openAPI
+const options = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'My API',
+            version: '1.0.0',
+            description: 'A sample API',
+        },
+        servers: [{
+            url: 'http://localhost:8080'
+        }],
+    },
+    apis: ['./routes/*.js'],
+};
+
+const specs = swaggerJsdoc(options);
+
 // middlewares
 // app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());  // post json request to node
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 // localhost:8080/users
 // app.route('/path').get(function)
