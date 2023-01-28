@@ -11,6 +11,7 @@ import productRoutes from "./routes/product.js";
 import swaggerUi from "swagger-ui-express"; 
 import specs from "./routes/swagger.js";
 
+// get parameters from .env
 dotenv.config();
 const app = express();
 
@@ -20,24 +21,6 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log("DB ERROR => ", err));
-
-// swagger - openAPI
-/* const options = {
-    swaggerDefinition: {
-        openapi: '3.0.0',
-        info: {
-            title: 'My API',
-            version: '1.0.0',
-            description: 'A sample API',
-        },
-        servers: [{
-            url: 'http://localhost:8080'
-        }],
-    },
-    apis: ['./routes/*.js'],
-};
-
-const specs = swaggerJsdoc(options); */
 
 // middlewares
 // app.use(cors());
@@ -61,6 +44,7 @@ app.use((req, res, next) => {
 
 // router middleware
 // localhost:8080/api/users
+// calling different routes in different files, auth.js, category.js and product.js
 app.use("/api", authRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
