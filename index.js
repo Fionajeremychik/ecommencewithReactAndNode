@@ -10,6 +10,8 @@ import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import swaggerUi from "swagger-ui-express"; 
 import specs from "./routes/swagger.js";
+// To resolve the security from different domain
+import cors from "cors";
 
 // get parameters from .env
 dotenv.config();
@@ -23,7 +25,7 @@ mongoose
   .catch((err) => console.log("DB ERROR => ", err));
 
 // middlewares
-// app.use(cors());
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());  // post json request to node
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
